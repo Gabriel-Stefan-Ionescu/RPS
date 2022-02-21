@@ -1,8 +1,8 @@
 // Array of choices
 
 const selection = ["rock", "paper", "scissors"];
-let playerScore = 0;
-let computerScore = 0;
+let computerScore = 0;// need a better way to reset score
+let playerScore = 0;// need a better way to reset score
 
 function computerPlay() {
     computerSelection = selection[Math.floor(Math.random()*selection.length)];
@@ -13,7 +13,6 @@ function playerPlay() {
   playerSelection = playerSelection.toLowerCase();
   while (playerSelection  == null){
     playerSelection = prompt(`Please choose "Rock", "Paper", "Scissors"`);
-    playerSelection = playerSelection.toLowerCase();
   } function validateData(playerSelection) {
     if (selection.includes(playerSelection)) {
       return true;
@@ -23,7 +22,7 @@ function playerPlay() {
     playerSelection = prompt(`Please choose "Rock", "Paper", "Scissors"`);
     playerSelection = playerSelection.toLowerCase();
   }
-  playerSelection = playerSelection.toLowerCase();
+  playerSelection = playerSelection.toLowerCase();// too many .toLowerCase need to make it simpler
 }
 
 
@@ -50,29 +49,22 @@ function playRound(playerSelection, computerSelection) {
   return roundWinner;
 }
 
-/*
-function initGame () {
-    playerPlay();
-    computerPlay();
-    playRound(playerSelection, computerSelection);
-    return roundWinner;
-}
-*/
-
-function game() {
+function mainGame() {
   for (let i = 0; i < 5; i++) {
     playerPlay();
     computerPlay();
     playRound(playerSelection, computerSelection);
     console.log(roundWinner);
-    playerScore;
-    computerScore;
-  }
-  if (playerScore > computerScore) {
-    return "Player Wins"
-  } else if (playerScore < computerScore) {
-    return "Computer Wins"
+  } if (playerScore > computerScore) {
+    console.log("Player Wins");// need a better way to reset score
+    playerScore = 0;
+    computerScore = 0;
+  } else {
+  console.log("Computer Wins");
+  playerScore = 0;
+  computerScore = 0;
   }
 }
 
-game()
+
+
