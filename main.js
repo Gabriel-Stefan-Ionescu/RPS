@@ -2,34 +2,47 @@
 
 const selection = ["rock", "paper", "scissors"];
 
-let playerSelection
-let computerSelection
 
 function computerPlay() {
     computerSelection = selection[Math.floor(Math.random()*selection.length)];
 }
 
 function playerPlay() {
-    playerSelection = prompt();
+  playerSelection = prompt(`Please choose "Rock", "Paper", "Scissors"`);
+  playerSelection = playerSelection.toLowerCase();
+  while (playerSelection  == null){
+    playerSelection = prompt(`Please choose "Rock", "Paper", "Scissors"`);
+    playerSelection = playerSelection.toLowerCase();
+  } function validateData(playerSelection) {
+    if (selection.includes(playerSelection)) {
+      return true;
+    }
+    return false;
+  } while (validateData(playerSelection) == false) {
+    playerSelection = prompt(`Please choose "Rock", "Paper", "Scissors"`);
+    playerSelection = playerSelection.toLowerCase();
+  }
+  playerSelection = playerSelection.toLowerCase();
+  console.log(playerSelection)
 }
 
 
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
-    roundWinner = "Tie";
+    roundWinner = `Tie! ${playerSelection} and ${computerSelection} are the same.`;
   } else if (playerSelection !== computerSelection) {
     if (
       (playerSelection === "rock" && computerSelection === "scissors") ||
       (playerSelection === "scissors" && computerSelection === "paper") ||
       (playerSelection === "paper" && computerSelection === "rock")
     ) {
-      roundWinner = "You Win";
+      roundWinner = `You Win! ${playerSelection} beats ${computerSelection}`;
     } else if (
       (playerSelection === "rock" && computerSelection === "paper") ||
       (playerSelection === "paper" && computerSelection === "scissors") ||
       (playerSelection === "scissors" && computerSelection === "rock")
     ) {
-      roundWinner = "You Lose";
+      roundWinner = `You Lose! ${computerSelection} beats ${playerSelection}`;
     }
   }
   return roundWinner;
